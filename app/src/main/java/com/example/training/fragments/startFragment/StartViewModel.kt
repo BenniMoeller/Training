@@ -1,4 +1,4 @@
-package com.example.training.fragments
+package com.example.training.fragments.startFragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

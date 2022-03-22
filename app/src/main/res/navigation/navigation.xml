@@ -6,6 +6,18 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.training.fragments.StartFragment"
-        android:label="StartFragment" />
+        android:name="com.example.training.fragments.startFragment.StartFragment"
+        android:label="StartFragment" >
+        <action
+            android:id="@+id/action_startFragment_to_bodyWeightFragment"
+            app:destination="@id/bodyWeightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bodyWeightFragment"
+        android:name="com.example.training.fragments.bodyWeightFragment.BodyWeightFragment"
+        android:label="BodyWeightFragment" >
+        <action
+            android:id="@+id/action_bodyWeightFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
 </navigation>

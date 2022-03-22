@@ -1,4 +1,4 @@
-package com.example.training.fragments
+package com.example.training.fragments.bodyWeightFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,18 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.training.R
 import com.example.training.database.TrainingDatabase
-import com.example.training.databinding.StartFragmentBinding
+import com.example.training.database.repositories.BodyWeightRepository
+import com.example.training.databinding.BodyweightFragmentBinding
 
 
 /**
- * fragment for the Start activity. the entry screen of the app that navigates to all other fragments
+ * fragment for the Bodyweight activity
  */
-class StartFragment : Fragment() {
-    private lateinit var viewModel: StartViewModel
-    private lateinit var binding: StartFragmentBinding
+class BodyWeightFragment : Fragment() {
+    private lateinit var viewModel: BodyWeightViewModel
+    private lateinit var binding: BodyweightFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.start_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.bodyweight_fragment, container, false)
         setUp()
         return binding.root
     }
@@ -38,10 +39,13 @@ class StartFragment : Fragment() {
     private fun setUpViewModel() {
         val application = requireNotNull(this.activity).application
         val dataBase = TrainingDatabase.getInstance(application).databaseDao
-        val viewModelFactory = StartViewModelFactory(dataBase, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(StartViewModel::class.java)
+        val repository = BodyWeightRepository(dataBase)
+        val viewModelFactory = BodyWeightViewModelFactory(repository, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(BodyWeightViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
     }
+
+    //todo add ability to add bodyweight
 }
 

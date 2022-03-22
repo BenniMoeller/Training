@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Training</string>
+    <string name="bodyweight_nav_start_fragment">Track a BodyWeight</string>
 </resources>
