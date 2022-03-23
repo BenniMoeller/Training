@@ -19,4 +19,7 @@ interface DatabaseDao {
     @Query("SELECT * FROM bodyweight_table")
     fun getAllBodyWeights(): LiveData<List<BodyWeight>>
 
+    @Delete
+    fun deleteBodyWeight(bodyWeight: BodyWeight): Int
+
 }

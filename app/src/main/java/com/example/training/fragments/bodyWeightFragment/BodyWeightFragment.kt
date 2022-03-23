@@ -11,6 +11,8 @@ import com.example.training.R
 import com.example.training.database.TrainingDatabase
 import com.example.training.database.repositories.BodyWeightRepository
 import com.example.training.databinding.BodyweightFragmentBinding
+import com.example.training.fragments.bodyWeightFragment.bodyWeightRecyclerView.BodyWeightListener
+import com.example.training.fragments.bodyWeightFragment.bodyWeightRecyclerView.BodyWeightRecyclerAdapter
 
 
 /**
@@ -31,6 +33,7 @@ class BodyWeightFragment : Fragment() {
      */
     private fun setUp() {
         setUpViewModel()
+        setUpRecyclerView()
     }
 
     /**
@@ -46,6 +49,16 @@ class BodyWeightFragment : Fragment() {
         binding.lifecycleOwner = this
     }
 
-    //todo add ability to add bodyweight
+    /**
+     * sets up the recyclerView so the bodyWeights are displayed
+     */
+    private fun setUpRecyclerView() {
+        val adapter = BodyWeightRecyclerAdapter(BodyWeightListener { viewModel.deleteBodyWeight(it) })
+        binding.bodyWeightRecyclerView.adapter = adapter
+        viewModel.bodyWeights.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+    }
+
 }
 

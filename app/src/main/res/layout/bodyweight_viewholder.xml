@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.training.database.dataClasses.BodyWeight" />
+
+        <variable
+            name="clickListener"
+            type="com.example.training.fragments.bodyWeightFragment.bodyWeightRecyclerView.BodyWeightListener" />
+    </data>
+
+    <Button
+        android:id="@+id/bodyWeight_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{data.asString()}"
+        android:onClick="@{() -> clickListener.onClick(data)}" />
+
+</layout>

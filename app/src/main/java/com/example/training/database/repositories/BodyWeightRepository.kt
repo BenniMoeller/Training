@@ -21,4 +21,13 @@ internal class BodyWeightRepository(private val dataBaseDao: DatabaseDao) {
      */
     fun getAllBodyWeights() = dataBaseDao.getAllBodyWeights()
 
+    /**
+     * deletes a BodyWeight from the dataBase
+     * @param bodyWeight the bodyWeight to be deleted
+     */
+    fun deleteBodyWeight(bodyWeight: BodyWeight) {
+        val wasDeleted = dataBaseDao.deleteBodyWeight(bodyWeight)
+        assert(wasDeleted == 1, {"the object was not in the database id: ${bodyWeight.id}"})
+    }
+
 }
