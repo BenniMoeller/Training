@@ -13,7 +13,10 @@ internal class BodyWeightRepository(private val dataBaseDao: DatabaseDao) {
      * @param bodyWeight BodyWeight the weight saved to the database
      * @return the id of the bodyWeight saved in the database
      */
-    fun saveBodyWeight(bodyWeight: BodyWeight) = dataBaseDao.saveBodyWeight(bodyWeight)
+    fun saveBodyWeight(bodyWeight: BodyWeight) {
+        val newId = dataBaseDao.saveBodyWeight(bodyWeight)
+        bodyWeight.id = newId
+    }
 
     /**
      * gets all bodyWeights from the Database
@@ -27,7 +30,7 @@ internal class BodyWeightRepository(private val dataBaseDao: DatabaseDao) {
      */
     fun deleteBodyWeight(bodyWeight: BodyWeight) {
         val wasDeleted = dataBaseDao.deleteBodyWeight(bodyWeight)
-        assert(wasDeleted == 1, {"the object was not in the database id: ${bodyWeight.id}"})
+        assert(wasDeleted == 1, { "the object was not in the database id: ${bodyWeight.id}" })
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.training.database
 
 import androidx.room.TypeConverter
+import com.example.training.database.dataClasses.ExerciseType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -9,7 +10,7 @@ import java.util.*
  * converts database classes so that they can be stored as string
  */
 internal class DataConverter {
-      private val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy") //the dateFormate used to serialize the dates for the database
+    private val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy") //the dateFormat used to serialize the dates for the database
 
     /**
      * we only want to save the year, month and day of the date
@@ -23,6 +24,12 @@ internal class DataConverter {
 
     @TypeConverter
     fun valueToDate(data: Long) = Date(data)
+
+    @TypeConverter
+    fun exerciseTypeToValue(exerciseType: ExerciseType): String = exerciseType.name
+
+    @TypeConverter
+    fun valueToExerciseType(data: String) = enumValueOf<ExerciseType>(data)
 
 
 }

@@ -51,6 +51,7 @@ class StartFragment : Fragment() {
      */
     private fun setUpNavigation() {
         binding.bodyWeightNavBtn.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_bodyWeightFragment) }
+        binding.exerciseNavBtn.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_exerciseFragment) }
     }
 }
 

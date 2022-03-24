@@ -58,6 +58,8 @@ class BodyWeightFragment : Fragment() {
         viewModel.bodyWeights.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+
+        //todo add a graph that shows the bodyWeight Progress, either here or in the startFragment
     }
 
 }

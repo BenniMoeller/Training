@@ -2,7 +2,9 @@ package com.example.training.database.dataClasses
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -15,13 +17,17 @@ import java.util.*
 data class BodyWeight private constructor(
     @PrimaryKey(autoGenerate = true) var id: Long, @ColumnInfo(name = "weight") val weight: Double, @ColumnInfo(name = "date") val date: Date
 ) {
-    constructor(weight: Double, date: Date) : this(0, weight, date) //this constructor is used to create bodyWeights without an id
+    constructor(weight: Double, date: Date) : this(0, weight, date) //this constructor is used to create the entry without an id
+
+    @Ignore
+    private val dateFormat = SimpleDateFormat("dd/MM/yyyy") //the formatter to transform the BodyWeight to a simple String
+
 
     /**
-     * returns the bodyWeight as a String
-     * @return String the formatted String
+     * formats the date of the BodyWeight in a string
+     * @return String the string containing the day, month and year
      */
-    fun asString() = "$date   $weight" //todo date is displayed terribly. only show day, month and year
+    fun asString(): String = dateFormat.format(date)
 
     //todo maybe change the primary key to the date so
 }

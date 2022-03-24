@@ -3,4 +3,5 @@
     <string name="bodyweight_nav_start_fragment">Track a BodyWeight</string>
     <string name="bodyweight_fragment_bodyweight_hint">BodyWeight</string>
     <string name="bodyweight_fragment_save_string">Save this BodyWeight</string>
+    <string name="startfragment_exercise_nav_string">add a new exercise</string>
 </resources>
