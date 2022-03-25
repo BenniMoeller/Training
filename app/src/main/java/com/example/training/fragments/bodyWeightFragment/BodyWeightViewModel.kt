@@ -15,8 +15,8 @@ import java.util.*
 internal class BodyWeightViewModel(private val repository: BodyWeightRepository, application: Application) : AndroidViewModel(application) {
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    val bodyWeights = repository.getAllBodyWeights() //all bodyWeights from the Database
 
+    val bodyWeights = repository.getAllBodyWeights() //all bodyWeights from the Database
     val bodyWeightString = MutableLiveData<String>() //the bodyWeightString that is also displayed in the ui with two way dataBinding
 
 

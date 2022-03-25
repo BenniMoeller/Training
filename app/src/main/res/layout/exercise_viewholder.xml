@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.training.database.dataClasses.Exercise" />
+
+        <variable
+            name="clickListener"
+            type="com.example.training.fragments.exerciseFragment.exerciseRecyclerView.ExerciseListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/exercise_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> clickListener.onDeleteClick(data)}"
+            android:text="@{data.asFormattedString()}" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@{data.mainLift ? @drawable/exercise_not_observed : @drawable/exercise_observed}"
+            android:onClick="@{() -> clickListener.onMainLiftClick(data)}"/>
+
+    </LinearLayout>
+
+
+
+</layout>

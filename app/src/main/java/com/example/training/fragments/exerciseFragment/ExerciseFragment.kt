@@ -11,6 +11,8 @@ import com.example.training.R
 import com.example.training.database.TrainingDatabase
 import com.example.training.database.repositories.ExerciseRepository
 import com.example.training.databinding.ExerciseFragmentBinding
+import com.example.training.fragments.exerciseFragment.exerciseRecyclerView.ExerciseListener
+import com.example.training.fragments.exerciseFragment.exerciseRecyclerView.ExerciseRecyclerAdapter
 
 
 /**
@@ -31,6 +33,7 @@ class ExerciseFragment : Fragment() {
      */
     private fun setUp() {
         setUpViewModel()
+        setUpRecyclerView()
     }
 
     /**
@@ -45,6 +48,17 @@ class ExerciseFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
     }
+
+    /**
+     * sets up the recyclerView so it displays the exercises correctly
+     */
+    private fun setUpRecyclerView() {
+        val adapter = ExerciseRecyclerAdapter(ExerciseListener({ viewModel.deleteExercise(it) }, { viewModel.updateMainLift(it) }))
+        binding.exerciseRecyclerView.adapter = adapter
+        viewModel.exercises.observe(viewLifecycleOwner) {
+            adapter.submitList(it) }
+    }
+
 
     //todo add the possibility to add exercises
 }

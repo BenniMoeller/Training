@@ -4,4 +4,6 @@
     <string name="bodyweight_fragment_bodyweight_hint">BodyWeight</string>
     <string name="bodyweight_fragment_save_string">Save this BodyWeight</string>
     <string name="startfragment_exercise_nav_string">add a new exercise</string>
+    <string name="exercise_fragment_name_edt_hint">ExerciseName</string>
+    <string name="exercise_fragment_save_exercise_string">Save this exercise</string>
 </resources>

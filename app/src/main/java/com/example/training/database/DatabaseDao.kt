@@ -1,11 +1,9 @@
 package com.example.training.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.training.database.dataClasses.BodyWeight
+import com.example.training.database.dataClasses.Exercise
 
 /**
  * the dao for the database
@@ -21,5 +19,17 @@ interface DatabaseDao {
 
     @Delete
     fun deleteBodyWeight(bodyWeight: BodyWeight): Int
+
+    @Insert
+    fun saveExercise(exercise: Exercise): Long
+
+    @Delete
+    fun deleteExercise(exercise: Exercise): Int
+
+    @Query("SELECT * FROM exercise_table")
+    fun getAllExercises(): LiveData<List<Exercise>>
+
+    @Update
+    fun updateExercise(exercise: Exercise): Int
 
 }

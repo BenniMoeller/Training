@@ -6,12 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.training.database.dataClasses.BodyWeight
+import com.example.training.database.dataClasses.Exercise
 
 
 /**
  * class to access the database
  */
-@Database(entities = [BodyWeight::class], version = 1, exportSchema = false)
+@Database(entities = [BodyWeight::class, Exercise::class], version = 2, exportSchema = false)
 @TypeConverters(DataConverter::class)
 internal abstract class TrainingDatabase : RoomDatabase() {
     abstract val databaseDao: DatabaseDao

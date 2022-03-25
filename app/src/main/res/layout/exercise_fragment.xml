@@ -12,7 +12,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:entries="@{viewModel.exerciseTypesAsString}"
+            android:selectedItemPosition="@={viewModel.selectedExerciseTypeIndex}"/>
+
+        <EditText
+            android:id="@+id/as"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.exerciseNameString}"
+            android:hint="@string/exercise_fragment_name_edt_hint" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exercise_fragment_save_exercise_string"
+            android:onClick="@{() -> viewModel.saveExerciseToDatabase()}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/exerciseRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
     </LinearLayout>
 </layout>

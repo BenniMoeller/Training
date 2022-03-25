@@ -14,10 +14,10 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "exercise_table")
 data class Exercise private constructor(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) var id: Long,
     @ColumnInfo(name = "exercise_name") val exerciseName: String,
     @ColumnInfo(name = "exercise_type") val exerciseType: ExerciseType,
-    @ColumnInfo(name = "is_mainlift") val isMainLift: Boolean
+    @ColumnInfo(name = "is_mainlift") var isMainLift: Boolean
 ) {
 
     /**
@@ -26,6 +26,12 @@ data class Exercise private constructor(
      * @param exerciseType ExerciseType the type of the exercise
      */
     constructor(exerciseName: String, exerciseType: ExerciseType) : this(0, exerciseName, exerciseType, false)
+
+    /**
+     * returns the exercise with a formatted string containing the name and type
+     * @return String the formatted string
+     */
+    fun asFormattedString() = "$exerciseName  ${exerciseType.name}"
 
 
 }

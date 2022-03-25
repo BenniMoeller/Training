@@ -27,7 +27,7 @@ data class BodyWeight private constructor(
      * formats the date of the BodyWeight in a string
      * @return String the string containing the day, month and year
      */
-    fun asString(): String = dateFormat.format(date)
+    fun asString(): String = "$weight ${dateFormat.format(date)}"
 
     //todo maybe change the primary key to the date so
 }
