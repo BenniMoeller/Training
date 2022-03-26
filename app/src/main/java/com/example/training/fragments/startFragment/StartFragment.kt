@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.training.R
 import com.example.training.database.TrainingDatabase
+import com.example.training.database.dataClasses.blockData.Block
 import com.example.training.databinding.StartFragmentBinding
 
 

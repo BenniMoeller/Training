@@ -1,5 +1,6 @@
 package com.example.training.database.repositories
 
+import com.example.training.database.DataConverter
 import com.example.training.database.DatabaseDao
 import com.example.training.database.dataClasses.BodyWeight
 import java.lang.IllegalArgumentException
@@ -17,6 +18,7 @@ internal class BodyWeightRepository(private val dataBaseDao: DatabaseDao) {
     fun saveBodyWeight(bodyWeight: BodyWeight) {
         val newId = dataBaseDao.saveBodyWeight(bodyWeight)
         bodyWeight.id = newId
+        bodyWeight.date = DataConverter().serializeDate(bodyWeight.date)
     }
 
     /**
@@ -31,9 +33,16 @@ internal class BodyWeightRepository(private val dataBaseDao: DatabaseDao) {
      */
     fun deleteBodyWeight(bodyWeight: BodyWeight) {
         val wasDeleted = dataBaseDao.deleteBodyWeight(bodyWeight)
-        assert(wasDeleted == 1, { "the object was not in the database id: ${bodyWeight.id}" })
         if (wasDeleted == 0) throw IllegalArgumentException("bodyWeight was not found in the dataBase")
+    }
 
+    /**
+     * retrieves a BodyWeight from the Database by its id
+     * @param id Long the id of the BodyWeight
+     * @return BodyWeight
+     */
+    fun getBodyWeightById(id: Long): BodyWeight {
+        return dataBaseDao.getBodyWeightById(id) ?: throw IllegalArgumentException("no BodyWeight with that id was found in the dataBase")
     }
 
 }

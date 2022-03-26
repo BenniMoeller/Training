@@ -7,14 +7,20 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.training.database.dataClasses.BodyWeight
 import com.example.training.database.dataClasses.Exercise
+import com.example.training.database.dataClasses.blockData.Block
+import com.example.training.database.dataClasses.blockData.BlockExercise
+import com.example.training.database.dataClasses.blockData.BlockSet
+import com.example.training.database.dataClasses.blockData.BlockTrainingDay
 
 
 /**
  * class to access the database
  */
-@Database(entities = [BodyWeight::class, Exercise::class], version = 2, exportSchema = false)
-@TypeConverters(DataConverter::class)
-internal abstract class TrainingDatabase : RoomDatabase() {
+@Database(
+    entities = [BodyWeight::class, Exercise::class, Block::class, BlockTrainingDay::class, BlockExercise::class, BlockSet::class],
+    version = 3,
+    exportSchema = false
+) @TypeConverters(DataConverter::class) internal abstract class TrainingDatabase : RoomDatabase() {
     abstract val databaseDao: DatabaseDao
 
     companion object {

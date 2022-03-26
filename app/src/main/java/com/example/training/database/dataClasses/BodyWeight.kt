@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,11 +15,9 @@ import java.util.*
  * @property date Date the date the bodyweight was recorded on
  */
 @Entity(tableName = "bodyweight_table")
-data class BodyWeight private constructor(
-    @PrimaryKey(autoGenerate = true) var id: Long, @ColumnInfo(name = "weight") val weight: Double, @ColumnInfo(name = "date") val date: Date
-) {
-    constructor(weight: Double, date: Date) : this(0, weight, date) //this constructor is used to create the entry without an id
-
+data class BodyWeight(@ColumnInfo(name = "weight") val weight: Double,
+                      @ColumnInfo(name = "date") var date: Date,
+                      @PrimaryKey(autoGenerate = true) var id: Long = 0) {
     @Ignore
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy") //the formatter to transform the BodyWeight to a simple String
 

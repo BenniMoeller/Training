@@ -13,7 +13,7 @@
     </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
@@ -22,13 +22,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> clickListener.onDeleteClick(data)}"
-            android:text="@{data.asFormattedString()}" />
+            android:text="@{data.asFormattedString()}"
+            android:layout_weight="1"/>
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@{data.mainLift ? @drawable/exercise_not_observed : @drawable/exercise_observed}"
-            android:onClick="@{() -> clickListener.onMainLiftClick(data)}"/>
+            android:onClick="@{() -> clickListener.onMainLiftClick(data)}"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 

@@ -20,6 +20,9 @@ interface DatabaseDao {
     @Delete
     fun deleteBodyWeight(bodyWeight: BodyWeight): Int
 
+    @Query("SELECT * FROM bodyweight_table WHERE id = :bodyWeightId")
+    fun getBodyWeightById(bodyWeightId: Long): BodyWeight?
+
     @Insert
     fun saveExercise(exercise: Exercise): Long
 
@@ -31,5 +34,8 @@ interface DatabaseDao {
 
     @Update
     fun updateExercise(exercise: Exercise): Int
+
+    @Query("SELECT * FROM exercise_table WHERE id = :exerciseId")
+    fun getExerciseById(exerciseId: Long): Exercise?
 
 }

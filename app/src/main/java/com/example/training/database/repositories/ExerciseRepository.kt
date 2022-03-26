@@ -45,4 +45,13 @@ internal class ExerciseRepository(private val databaseDao: DatabaseDao) {
         if (updateSuccessful == 0) throw IllegalArgumentException("the exercise could not be found in the database")
     }
 
+    /**
+     * retrieves an exercise from the database
+     * @param exerciseId Long the id of the exercise
+     * @return Exercise
+     */
+    fun getExerciseById(exerciseId: Long): Exercise {
+        return databaseDao.getExerciseById(exerciseId) ?: throw IllegalArgumentException("this exercise was not found in the database")
+    }
+
 }
