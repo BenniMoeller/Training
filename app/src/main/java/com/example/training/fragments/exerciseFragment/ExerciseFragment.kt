@@ -57,7 +57,7 @@ class ExerciseFragment : Fragment() {
         binding.exerciseRecyclerView.adapter = adapter
         viewModel.exercises.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        } //the isMainLift image in the viewholder can only be changed every few seconds. also on changing it the view briefly disappears
+        } //todo the isMainLift image in the viewholder can only be changed every few seconds. also on changing it the view briefly disappears
     }
 
 

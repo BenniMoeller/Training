@@ -11,16 +11,19 @@ import com.example.training.database.dataClasses.blockData.Block
 import com.example.training.database.dataClasses.blockData.BlockExercise
 import com.example.training.database.dataClasses.blockData.BlockSet
 import com.example.training.database.dataClasses.blockData.BlockTrainingDay
+import com.example.training.database.dataClasses.trainingData.TrainingDay
+import com.example.training.database.dataClasses.trainingData.TrainingExercise
+import com.example.training.database.dataClasses.trainingData.TrainingSet
 
 
 /**
  * class to access the database
  */
-@Database(
-    entities = [BodyWeight::class, Exercise::class, Block::class, BlockTrainingDay::class, BlockExercise::class, BlockSet::class],
-    version = 3,
-    exportSchema = false
-) @TypeConverters(DataConverter::class) internal abstract class TrainingDatabase : RoomDatabase() {
+@Database(entities = [BodyWeight::class, Exercise::class, Block::class, BlockTrainingDay::class, BlockExercise::class, BlockSet::class, TrainingDay::class, TrainingExercise::class, TrainingSet::class],
+          version = 4,
+          exportSchema = false)
+@TypeConverters(DataConverter::class)
+internal abstract class TrainingDatabase : RoomDatabase() {
     abstract val databaseDao: DatabaseDao
 
     companion object {
@@ -33,7 +36,8 @@ import com.example.training.database.dataClasses.blockData.BlockTrainingDay
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.applicationContext, TrainingDatabase::class.java, "training_database_database")
-                        .fallbackToDestructiveMigration().build()
+                        .fallbackToDestructiveMigration()
+                        .build()
                 }
 
                 return instance
