@@ -44,4 +44,6 @@ internal abstract class TrainingDatabase : RoomDatabase() {
             }
         }
     }
+
+    //todo the basic database structure is implemented but it is very bad. i want to improve it by drawing an er modell as well as using the normal forms to reduce redundency
 }
