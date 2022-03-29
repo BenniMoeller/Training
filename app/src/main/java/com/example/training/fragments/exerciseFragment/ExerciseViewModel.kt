@@ -2,6 +2,7 @@ package com.example.training.fragments.exerciseFragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.training.database.dataClasses.Exercise
 import com.example.training.database.dataClasses.ExerciseType
@@ -23,6 +24,10 @@ internal class ExerciseViewModel(private val repository: ExerciseRepository, app
     val selectedExerciseTypeIndex = MutableLiveData(0) //the index of the exerciseType selected in the ui
     val exerciseNameString = MutableLiveData("")
 
+    private val _doesExerciseAlreadyExist = MutableLiveData<Boolean>(false)
+    val doesExerciseAlreadyExist: LiveData<Boolean>
+        get() = _doesExerciseAlreadyExist
+
 
     override fun onCleared() {
         super.onCleared()
@@ -37,12 +42,25 @@ internal class ExerciseViewModel(private val repository: ExerciseRepository, app
             withContext(Dispatchers.IO) {
                 val exerciseType = exerciseTypes[selectedExerciseTypeIndex.value!!] //get the exerciseType selected in the ui
                 val exercise = Exercise(exerciseNameString.value!!, exerciseType)
-                repository.saveExercise(exercise)
-                exerciseNameString.postValue("")
-                selectedExerciseTypeIndex.postValue(0)
+                try {
+                    repository.saveExercise(exercise) //to check if an exercise with the same name already exist in the database
+                } catch (exception: IllegalArgumentException) {
+                    _doesExerciseAlreadyExist.postValue(true)
+                }
+
+                restoreExerciseState()
             }
         }
     }
+
+    /**
+     * resets the exerciseName and selectedExerciseTypeIndex
+     */
+    private fun restoreExerciseState() {
+        exerciseNameString.postValue("")
+        selectedExerciseTypeIndex.postValue(0)
+    }
+
 
     /**
      * deletes an exercise from the database
@@ -68,4 +86,9 @@ internal class ExerciseViewModel(private val repository: ExerciseRepository, app
             }
         }
     }
+
+    /**
+     * resets the value of the doesExerciseAlreadyExist
+     */
+    fun resetDoesExerciseAlreadyExist() = _doesExerciseAlreadyExist.postValue(false)
 }

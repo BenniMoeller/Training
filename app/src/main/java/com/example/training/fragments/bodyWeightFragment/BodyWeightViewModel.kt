@@ -32,8 +32,7 @@ internal class BodyWeightViewModel(private val repository: BodyWeightRepository,
         uiScope.launch {
             withContext(Dispatchers.IO) { //todo make the input not save if it is in the wrong format
                 val bodyWeight = bodyWeightString.value?.toDouble() ?: 0.0
-                val date = Calendar.getInstance().time
-                repository.saveBodyWeight(BodyWeight(bodyWeight, date))
+                repository.saveBodyWeight(BodyWeight(bodyWeight))
                 bodyWeightString.postValue("")
             }
         }

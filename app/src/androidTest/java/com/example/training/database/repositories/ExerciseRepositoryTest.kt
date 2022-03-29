@@ -37,16 +37,23 @@ class ExerciseRepositoryTest {
         val exercise2 = Exercise("deadlift", ExerciseType.LOWER_BODY_PULL)
         exerciseRepository.saveExercise(exercise1)
         exerciseRepository.saveExercise(exercise2)
-        assertTrue(exercise1.id == 1L)
-        assertTrue(exercise2.id == 2L)
 
-        val storedExercise1 = exerciseRepository.getExerciseById(exercise1.id)
+        val storedExercise1 = exerciseRepository.getExerciseById(exercise1.name)
         assertEquals(exercise1, storedExercise1)
     }
 
     @Test(expected = IllegalArgumentException::class)
+    fun testOverwriteExercise() {
+        val exercise = Exercise("Curls", ExerciseType.BICEPS)
+        exerciseRepository.saveExercise(exercise)
+        val exercise2 = Exercise("Curls", ExerciseType.CALVES)
+        exerciseRepository.saveExercise(exercise2)
+
+    }
+
+    @Test(expected = IllegalArgumentException::class)
     fun testIncorrectGetById() {
-        exerciseRepository.getExerciseById(600L)
+        exerciseRepository.getExerciseById("wrongName")
     }
 
     @Test(expected = IllegalArgumentException::class)
@@ -54,7 +61,7 @@ class ExerciseRepositoryTest {
         val exercise = Exercise("bench", ExerciseType.UPPER_BODY_HOR_PUSH)
         exerciseRepository.saveExercise(exercise)
         exerciseRepository.deleteExercise(exercise)
-        exerciseRepository.getExerciseById(exercise.id) //since the exercise is now deleted we expect an IllegalArgumentException when we search it
+        exerciseRepository.getExerciseById(exercise.name) //since the exercise is now deleted we expect an IllegalArgumentException when we search it
     }
 
     @Test(expected = IllegalArgumentException::class)
@@ -70,7 +77,7 @@ class ExerciseRepositoryTest {
         exerciseRepository.changeMainLiftStatusOfExercise(exercise)
         assertTrue(exercise.isMainLift)
 
-        val storedExercise = exerciseRepository.getExerciseById(exercise.id)
+        val storedExercise = exerciseRepository.getExerciseById(exercise.name)
         assertEquals(exercise.isMainLift, storedExercise.isMainLift)
     }
 

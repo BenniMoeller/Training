@@ -20,7 +20,7 @@ import com.example.training.database.dataClasses.trainingData.TrainingSet
  * class to access the database
  */
 @Database(entities = [BodyWeight::class, Exercise::class, Block::class, BlockTrainingDay::class, BlockExercise::class, BlockSet::class, TrainingDay::class, TrainingExercise::class, TrainingSet::class],
-          version = 4,
+          version = 5,
           exportSchema = false)
 @TypeConverters(DataConverter::class)
 internal abstract class TrainingDatabase : RoomDatabase() {

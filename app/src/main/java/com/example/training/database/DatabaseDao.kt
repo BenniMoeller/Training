@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.training.database.dataClasses.BodyWeight
 import com.example.training.database.dataClasses.Exercise
+import java.util.*
 
 /**
  * the dao for the database
@@ -11,7 +12,7 @@ import com.example.training.database.dataClasses.Exercise
 @Dao
 interface DatabaseDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE) //replaces BodyWeight so today's bodyweight can still be updated
     fun saveBodyWeight(bodyWeight: BodyWeight): Long
 
     @Query("SELECT * FROM bodyweight_table")
@@ -20,11 +21,11 @@ interface DatabaseDao {
     @Delete
     fun deleteBodyWeight(bodyWeight: BodyWeight): Int
 
-    @Query("SELECT * FROM bodyweight_table WHERE id = :bodyWeightId")
-    fun getBodyWeightById(bodyWeightId: Long): BodyWeight?
+    @Query("SELECT * FROM bodyweight_table WHERE date = :bodyWeightDate")
+    fun getBodyWeightById(bodyWeightDate: Date): BodyWeight?
 
-    @Insert
-    fun saveExercise(exercise: Exercise): Long
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun saveExercise(exercise: Exercise)
 
     @Delete
     fun deleteExercise(exercise: Exercise): Int
@@ -35,7 +36,7 @@ interface DatabaseDao {
     @Update
     fun updateExercise(exercise: Exercise): Int
 
-    @Query("SELECT * FROM exercise_table WHERE id = :exerciseId")
-    fun getExerciseById(exerciseId: Long): Exercise?
+    @Query("SELECT * FROM exercise_table WHERE name = :exerciseName")
+    fun getExerciseByName(exerciseName: String): Exercise?
 
 }

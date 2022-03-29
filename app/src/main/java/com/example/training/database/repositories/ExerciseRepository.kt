@@ -1,5 +1,6 @@
 package com.example.training.database.repositories
 
+import android.database.sqlite.SQLiteConstraintException
 import com.example.training.database.DatabaseDao
 import com.example.training.database.dataClasses.Exercise
 import java.lang.IllegalArgumentException
@@ -16,8 +17,11 @@ internal class ExerciseRepository(private val databaseDao: DatabaseDao) {
      * @param exercise Exercise the exercise to be saved
      */
     fun saveExercise(exercise: Exercise) {
-        val newId = databaseDao.saveExercise(exercise)
-        exercise.id = newId
+        try {
+            databaseDao.saveExercise(exercise)
+        } catch (exception: SQLiteConstraintException) {
+            throw IllegalArgumentException("An exercise with that Name was already inserted in the dataBase")
+        }
     }
 
     /**
@@ -47,11 +51,11 @@ internal class ExerciseRepository(private val databaseDao: DatabaseDao) {
 
     /**
      * retrieves an exercise from the database
-     * @param exerciseId Long the id of the exercise
+     * @param exerciseName Long the name of the exercise
      * @return Exercise
      */
-    fun getExerciseById(exerciseId: Long): Exercise {
-        return databaseDao.getExerciseById(exerciseId) ?: throw IllegalArgumentException("this exercise was not found in the database")
+    fun getExerciseById(exerciseName: String): Exercise {
+        return databaseDao.getExerciseByName(exerciseName) ?: throw IllegalArgumentException("this exercise was not found in the database")
     }
 
 }

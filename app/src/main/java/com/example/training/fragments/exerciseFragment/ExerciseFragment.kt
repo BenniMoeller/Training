@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +35,7 @@ class ExerciseFragment : Fragment() {
     private fun setUp() {
         setUpViewModel()
         setUpRecyclerView()
+        setUpExerciseCheck()
     }
 
     /**
@@ -58,6 +60,18 @@ class ExerciseFragment : Fragment() {
         viewModel.exercises.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         } //todo the isMainLift image in the viewholder can only be changed every few seconds. also on changing it the view briefly disappears
+    }
+
+    /**
+     * displayes a toast when an exercise already exists in the database according to the viewmodel
+     */
+    private fun setUpExerciseCheck() {
+        viewModel.doesExerciseAlreadyExist.observe(viewLifecycleOwner) {
+            if (it == true) {
+                Toast.makeText(requireContext(), "An exercise with this name already exists", Toast.LENGTH_SHORT).show()
+                viewModel.resetDoesExerciseAlreadyExist()
+            }
+        }
     }
 
 

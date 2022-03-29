@@ -26,11 +26,11 @@ internal class ExerciseRecyclerAdapter(private val touchListener: ExerciseListen
  */
 internal class ExerciseDiffCallBack : DiffUtil.ItemCallback<Exercise>() {
     override fun areItemsTheSame(oldItem: Exercise, newItem: Exercise): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(oldItem: Exercise, newItem: Exercise): Boolean {
-        return (oldItem.id == newItem.id) && (oldItem.isMainLift == newItem.isMainLift)
+        return (oldItem.name == newItem.name) && (oldItem.isMainLift == newItem.isMainLift)
     }
 
 }

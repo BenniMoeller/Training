@@ -20,15 +20,15 @@ import java.lang.IllegalArgumentException
                                   parentColumns = arrayOf("id"),
                                   childColumns = arrayOf("block_trainingday_id"),
                                   onDelete = ForeignKey.CASCADE), ForeignKey(entity = Exercise::class,
-                                                                             parentColumns = arrayOf("id"),
-                                                                             childColumns = arrayOf("exercise_id"),
+                                                                             parentColumns = arrayOf("name"),
+                                                                             childColumns = arrayOf("exercise_name"),
                                                                              onDelete = ForeignKey.SET_NULL)]
 
        )
 data class BlockExercise(@ColumnInfo(name = "exercise_counter") val exerciseCounter: Int,
                          @PrimaryKey(autoGenerate = true) val id: Long = 0,
                          @ColumnInfo(name = "block_trainingday_id") val blockTrainingDayId: Long = 0,
-                         @ColumnInfo(name = "exercise_id") val exerciseId: Long = 0) {
+                         @ColumnInfo(name = "exercise_name") val exerciseName: String = "") {
 
     init {
         if (exerciseCounter < 0) throw IllegalArgumentException("The exerciseCounter can't be smaller than 0")

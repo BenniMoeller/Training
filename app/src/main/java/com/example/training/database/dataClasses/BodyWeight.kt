@@ -10,16 +10,19 @@ import java.util.*
 
 /**
  * dataclass that represents a bodyweight
- * @property id Long the id in the databases
  * @property weight Double the weight
- * @property date Date the date the bodyweight was recorded on
+ * @property date Date the date the bodyweight was recorded on. also the primary key
  */
 @Entity(tableName = "bodyweight_table")
 data class BodyWeight(@ColumnInfo(name = "weight") val weight: Double,
-                      @ColumnInfo(name = "date") var date: Date,
-                      @PrimaryKey(autoGenerate = true) var id: Long = 0) {
+                      @PrimaryKey(autoGenerate = false) var date: Date = Calendar.getInstance().time) {
     @Ignore
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy") //the formatter to transform the BodyWeight to a simple String
+
+    init {
+        val dateString = dateFormat.format(date) //the format is used to only save the year, month, and day of the date
+        date = dateFormat.parse(dateString)
+    }
 
 
     /**
@@ -28,5 +31,5 @@ data class BodyWeight(@ColumnInfo(name = "weight") val weight: Double,
      */
     fun asString(): String = "$weight ${dateFormat.format(date)}"
 
-    //todo maybe change the primary key to the date so
+
 }

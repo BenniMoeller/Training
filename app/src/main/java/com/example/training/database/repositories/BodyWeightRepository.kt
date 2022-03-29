@@ -4,6 +4,7 @@ import com.example.training.database.DataConverter
 import com.example.training.database.DatabaseDao
 import com.example.training.database.dataClasses.BodyWeight
 import java.lang.IllegalArgumentException
+import java.util.*
 
 /**
  * class that acts as access to the Database for the BodyWeights
@@ -12,14 +13,10 @@ internal class BodyWeightRepository(private val dataBaseDao: DatabaseDao) {
 
     /**
      * saves a bodyWeight to the Database
-     * @param bodyWeight BodyWeight the weight saved to the database
+     * @param bodyWeight BodyWeight the BodyWeight saved to the database
      * @return the id of the bodyWeight saved in the database
      */
-    fun saveBodyWeight(bodyWeight: BodyWeight) {
-        val newId = dataBaseDao.saveBodyWeight(bodyWeight)
-        bodyWeight.id = newId
-        bodyWeight.date = DataConverter().serializeDate(bodyWeight.date)
-    }
+    fun saveBodyWeight(bodyWeight: BodyWeight) = dataBaseDao.saveBodyWeight(bodyWeight)
 
     /**
      * gets all bodyWeights from the Database
@@ -38,11 +35,11 @@ internal class BodyWeightRepository(private val dataBaseDao: DatabaseDao) {
 
     /**
      * retrieves a BodyWeight from the Database by its id
-     * @param id Long the id of the BodyWeight
+     * @param date Date the date of the BodyWeight to be retrieved
      * @return BodyWeight
      */
-    fun getBodyWeightById(id: Long): BodyWeight {
-        return dataBaseDao.getBodyWeightById(id) ?: throw IllegalArgumentException("no BodyWeight with that id was found in the dataBase")
+    fun getBodyWeightByDate(date: Date): BodyWeight {
+        return dataBaseDao.getBodyWeightById(date) ?: throw IllegalArgumentException("no BodyWeight with that id was found in the dataBase")
     }
 
 }

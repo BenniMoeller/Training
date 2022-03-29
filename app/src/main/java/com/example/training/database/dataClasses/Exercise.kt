@@ -6,16 +6,14 @@ import androidx.room.PrimaryKey
 
 /**
  * class that represents an exercise in the database
- * @property id Long the id in the dataBase
- * @property exerciseName String the name of the Exericse
+ * @property name String the name of the Exericse. also the primary key
  * @property exerciseType ExerciseType the type of the exercise eg. lower body pull
  * @property isMainLift Boolean whether the exercise is treated as mainLift and thus important
  * @constructor
  */
 @Entity(tableName = "exercise_table")
-data class Exercise(@ColumnInfo(name = "exercise_name") val exerciseName: String,
+data class Exercise(@PrimaryKey(autoGenerate = false) val name: String,
                     @ColumnInfo(name = "exercise_type") val exerciseType: ExerciseType,
-                    @PrimaryKey(autoGenerate = true) var id: Long = 0,
                     @ColumnInfo(name = "is_mainlift") var isMainLift: Boolean = false) {
 
 
@@ -23,7 +21,7 @@ data class Exercise(@ColumnInfo(name = "exercise_name") val exerciseName: String
      * returns the exercise with a formatted string containing the name and type
      * @return String the formatted string
      */
-    fun asFormattedString() = "$exerciseName  ${exerciseType.name}"
+    fun asFormattedString() = "$name  ${exerciseType.name}"
 
 
 }

@@ -10,7 +10,8 @@ import com.example.training.database.dataClasses.BodyWeight
  * RecyclerAdapter for the BodyWeightFragment
  * @property touchListener the function that is executed when views from this adapter are clicked
  */
-internal class BodyWeightRecyclerAdapter(private val touchListener: BodyWeightListener) : ListAdapter<BodyWeight, BodyWeightViewHolder>(BodyWeightDiffCallBack()) {
+internal class BodyWeightRecyclerAdapter(private val touchListener: BodyWeightListener) : ListAdapter<BodyWeight, BodyWeightViewHolder>(
+        BodyWeightDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BodyWeightViewHolder {
         return BodyWeightViewHolder.create(parent)
@@ -26,11 +27,11 @@ internal class BodyWeightRecyclerAdapter(private val touchListener: BodyWeightLi
  */
 internal class BodyWeightDiffCallBack : DiffUtil.ItemCallback<BodyWeight>() {
     override fun areItemsTheSame(oldItem: BodyWeight, newItem: BodyWeight): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.date == newItem.date
     }
 
     override fun areContentsTheSame(oldItem: BodyWeight, newItem: BodyWeight): Boolean {
-        return oldItem.id == newItem.id
+        return (oldItem.date == newItem.date) && (oldItem.weight == newItem.weight)
     }
 
 }

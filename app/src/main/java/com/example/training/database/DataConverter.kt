@@ -11,28 +11,17 @@ import java.util.*
  * converts database classes so that they can be stored as string
  */
 internal class DataConverter {
-    private val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy") //the dateFormat used to serialize the dates for the database
 
     /**
      * we only want to save the year, month and day of the date
      */
     @TypeConverter
-    fun dateToValue(data: Date): Long {
-        val dateString = simpleDateFormat.format(data) //the format is used to only save the year, month, and day of the date
-        return simpleDateFormat.parse(dateString).time
-    }
+    fun dateToValue(data: Date) = data.time
 
 
     @TypeConverter
     fun valueToDate(data: Long) = Date(data)
 
-
-    /**
-     * serializes a date so it only consists of year, month and day
-     * @param date Date the date to be converted
-     * @return Date the converted date
-     */
-    fun serializeDate(date: Date) = valueToDate(dateToValue(date))
 
     @TypeConverter
     fun exerciseTypeToValue(exerciseType: ExerciseType): String = exerciseType.name
@@ -48,8 +37,6 @@ internal class DataConverter {
         val numbers = data.split("-")
         return Range(numbers[0].toInt(), numbers[1].toInt())
     }
-
-
 
 
 }
