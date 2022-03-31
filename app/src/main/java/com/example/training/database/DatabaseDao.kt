@@ -9,34 +9,26 @@ import java.util.*
 /**
  * the dao for the database
  */
-@Dao
-interface DatabaseDao {
+@Dao interface DatabaseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) //replaces BodyWeight so today's bodyweight can still be updated
     fun saveBodyWeight(bodyWeight: BodyWeight): Long
 
-    @Query("SELECT * FROM bodyweight_table")
-    fun getAllBodyWeights(): LiveData<List<BodyWeight>>
+    @Query("SELECT * FROM bodyweight_table") fun getAllBodyWeights(): LiveData<List<BodyWeight>>
 
-    @Delete
-    fun deleteBodyWeight(bodyWeight: BodyWeight): Int
+    @Delete fun deleteBodyWeight(bodyWeight: BodyWeight): Int
 
-    @Query("SELECT * FROM bodyweight_table WHERE date = :bodyWeightDate")
-    fun getBodyWeightById(bodyWeightDate: Date): BodyWeight?
+    @Query("SELECT * FROM bodyweight_table WHERE date = :bodyWeightDate") fun getBodyWeightById(bodyWeightDate: Date): BodyWeight?
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun saveExercise(exercise: Exercise)
+    @Insert(onConflict = OnConflictStrategy.ABORT) fun saveExercise(exercise: Exercise)
 
-    @Delete
-    fun deleteExercise(exercise: Exercise): Int
+    @Delete fun deleteExercise(exercise: Exercise): Int
 
-    @Query("SELECT * FROM exercise_table")
-    fun getAllExercises(): LiveData<List<Exercise>>
+    @Query("SELECT * FROM exercise_table") fun getAllExercises(): LiveData<List<Exercise>>
 
-    @Update
-    fun updateExercise(exercise: Exercise): Int
+    @Update fun updateExercise(exercise: Exercise): Int
 
-    @Query("SELECT * FROM exercise_table WHERE name = :exerciseName")
-    fun getExerciseByName(exerciseName: String): Exercise?
+    @Query("SELECT * FROM exercise_table WHERE name = :exerciseName") fun getExerciseByName(exerciseName: String): Exercise?
+
 
 }

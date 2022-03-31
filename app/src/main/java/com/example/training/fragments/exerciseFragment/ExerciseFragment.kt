@@ -63,7 +63,7 @@ class ExerciseFragment : Fragment() {
     }
 
     /**
-     * displayes a toast when an exercise already exists in the database according to the viewmodel
+     * display a toast when an exercise already exists in the database according to the viewmodel
      */
     private fun setUpExerciseCheck() {
         viewModel.doesExerciseAlreadyExist.observe(viewLifecycleOwner) {

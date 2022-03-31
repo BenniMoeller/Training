@@ -8,24 +8,22 @@ import com.example.training.database.dataClasses.blockData.BlockExercise
 
 /**
  *
- * @property exerciseOrder Int the order of the exercise in a training day
- * @property id Long the id in the database
- * @property blockTrainingExerciseId Long the template which this is a part of
+ * @property id Long the id of this entity in the database
+ * @property trainingDayId Long the id of the trainingDay this trainingExercise takes place in
  * @property trainingDayId Long the id of the trainingDay this entity takes place in
  * @constructor
  */
 @Entity(tableName = "trainingexercise_table",
         foreignKeys = [ForeignKey(entity = BlockExercise::class,
                                   parentColumns = arrayOf("id"),
-                                  childColumns = arrayOf("blocktraining_exercise"),
+                                  childColumns = arrayOf("blocktraining_exercise_id"),
                                   onDelete = ForeignKey.CASCADE), ForeignKey(entity = TrainingDay::class,
                                                                              parentColumns = arrayOf("id"),
-                                                                             childColumns = arrayOf("training_day"),
+                                                                             childColumns = arrayOf("training_day_id"),
                                                                              onDelete = ForeignKey.CASCADE)])
-data class TrainingExercise(@ColumnInfo(name = "exercise_order") val exerciseOrder: Int,
-                            @PrimaryKey(autoGenerate = true) val id: Long = 0,
-                            @ColumnInfo(name = "blocktraining_exercise") val blockTrainingExerciseId: Long = 0,
-                            @ColumnInfo(name = "training_day") val trainingDayId: Long = 0) {
+data class TrainingExercise(@PrimaryKey(autoGenerate = true) val id: Long = 0,
+                            @ColumnInfo(name = "training_day_id") val trainingDayId: Long = 0,
+                            @ColumnInfo(name = "blocktraining_exercise_id") val blockTrainingDayId: Long = 0) {
 
 
 }
