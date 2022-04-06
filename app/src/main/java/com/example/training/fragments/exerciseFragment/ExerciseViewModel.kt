@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.training.database.DatabaseDao
 import com.example.training.database.dataClasses.Exercise
 import com.example.training.database.dataClasses.ExerciseType
 import com.example.training.database.repositories.ExerciseRepository
@@ -13,9 +14,10 @@ import kotlinx.coroutines.*
 /**
  * viewmodel for the ExerciseFragment
  */
-internal class ExerciseViewModel(private val repository: ExerciseRepository, application: Application) : AndroidViewModel(application) {
+internal class ExerciseViewModel(private val database: DatabaseDao, application: Application) : AndroidViewModel(application) {
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val repository = ExerciseRepository(database)
 
     val exercises = repository.getAllExercises()
 

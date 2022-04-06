@@ -8,6 +8,7 @@ import kotlin.math.max
  * class that represents a template for a single trainingSet
  * @property targetReps Range the reps of this set
  * @property targetRir Range the RepsInReserve of this set
+ * @property id Long the id of this set in the databaseash
  * @property setIndex Int the index of the set in a blockExercise
  * @property blockExerciseId Long the id of the BlockExercise this BlockSet belongs to
  * @constructor
@@ -19,8 +20,8 @@ import kotlin.math.max
                                   onDelete = ForeignKey.CASCADE)])
 data class BlockSet(@ColumnInfo(name = "target_reps") val targetReps: Range,
                     @ColumnInfo(name = "target_rir") val targetRir: Range,
-                    @ColumnInfo(name = "set_index") val setIndex: Int,
                     @PrimaryKey(autoGenerate = true) val id: Long = 0,
+                    @ColumnInfo(name = "set_index") val setIndex: Int = 0,
                     @ColumnInfo(name = "blockexercise_id") val blockExerciseId: Long = 0) {
 
     init {

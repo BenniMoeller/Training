@@ -6,4 +6,5 @@
     <string name="startfragment_exercise_nav_string">add a new exercise</string>
     <string name="exercise_fragment_name_edt_hint">ExerciseName</string>
     <string name="exercise_fragment_save_exercise_string">Save this exercise</string>
+    <string name="start_fragment_nav_block_string">Start a new Block</string>
 </resources>

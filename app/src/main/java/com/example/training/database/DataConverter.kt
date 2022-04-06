@@ -12,9 +12,22 @@ import java.util.*
  */
 internal class DataConverter {
 
-    /**
-     * we only want to save the year, month and day of the date
-     */
+
+    companion object {
+        private val dateFormat = SimpleDateFormat("dd/MM/yyyy") //the formatter to serialize a date
+
+        /**
+         * serializes a date so it only consists of year, month and day
+         * @param date Date the date to serialize
+         * @return the serialized Date
+         */
+        fun serializeDate(date: Date): Date {
+            val dateString = dateFormat.format(date)
+            return dateFormat.parse(dateString)
+        }
+    }
+
+
     @TypeConverter
     fun dateToValue(data: Date) = data.time
 

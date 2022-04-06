@@ -42,8 +42,7 @@ class BodyWeightFragment : Fragment() {
     private fun setUpViewModel() {
         val application = requireNotNull(this.activity).application
         val dataBase = TrainingDatabase.getInstance(application).databaseDao
-        val repository = BodyWeightRepository(dataBase)
-        val viewModelFactory = BodyWeightViewModelFactory(repository, application)
+        val viewModelFactory = BodyWeightViewModelFactory(dataBase, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BodyWeightViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

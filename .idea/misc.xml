@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/drawable/add_image.xml" value="0.269" />
+        <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/drawable/delete_image.xml" value="0.269" />
         <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/drawable/exercise_observed.xml" value="0.1935" />
+        <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/layout/block_fragment.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/layout/blockexercise_view.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/layout/blockset_view.xml" value="0.358695652173913" />
         <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/layout/bodyweight_fragment.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/layout/bodyweight_viewholder.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/moell/AndroidStudioProjects/Training/app/src/main/res/layout/exercise_fragment.xml" value="0.18541666666666667" />

@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.example.training.database.DataConverter
 import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,12 +17,13 @@ import java.util.*
 @Entity(tableName = "bodyweight_table")
 data class BodyWeight(@ColumnInfo(name = "weight") val weight: Double,
                       @PrimaryKey(autoGenerate = false) var date: Date = Calendar.getInstance().time) {
+
     @Ignore
-    private val dateFormat = SimpleDateFormat("dd/MM/yyyy") //the formatter to transform the BodyWeight to a simple String
+    private val dateFormat = SimpleDateFormat("dd/MM/yyyy") //the formatter to display the date of the bodyWeight
+
 
     init {
-        val dateString = dateFormat.format(date) //the format is used to only save the year, month, and day of the date
-        date = dateFormat.parse(dateString)
+        date = DataConverter.serializeDate(date)
     }
 
 

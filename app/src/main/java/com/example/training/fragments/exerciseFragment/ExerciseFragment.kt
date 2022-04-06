@@ -44,8 +44,7 @@ class ExerciseFragment : Fragment() {
     private fun setUpViewModel() {
         val application = requireNotNull(this.activity).application
         val dataBase = TrainingDatabase.getInstance(application).databaseDao
-        val repository = ExerciseRepository(dataBase)
-        val viewModelFactory = ExerciseViewModelFactory(repository, application)
+        val viewModelFactory = ExerciseViewModelFactory(dataBase, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ExerciseViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

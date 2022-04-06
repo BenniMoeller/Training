@@ -19,12 +19,18 @@
             android:id="@+id/bodyWeight_nav_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bodyweight_nav_start_fragment"/>
+            android:text="@string/bodyweight_nav_start_fragment" />
 
         <Button
             android:id="@+id/exercise_nav_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/startfragment_exercise_nav_string" />
+
+        <Button
+            android:id="@+id/block_nav_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_fragment_nav_block_string" />
     </LinearLayout>
 </layout>
