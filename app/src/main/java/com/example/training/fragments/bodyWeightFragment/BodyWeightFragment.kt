@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.training.R
 import com.example.training.database.TrainingDatabase
-import com.example.training.database.repositories.BodyWeightRepository
 import com.example.training.databinding.BodyweightFragmentBinding
 import com.example.training.fragments.bodyWeightFragment.bodyWeightRecyclerView.BodyWeightListener
 import com.example.training.fragments.bodyWeightFragment.bodyWeightRecyclerView.BodyWeightRecyclerAdapter

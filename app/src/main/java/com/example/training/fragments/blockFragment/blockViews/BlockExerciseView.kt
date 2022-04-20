@@ -35,6 +35,7 @@ class BlockExerciseView @JvmOverloads constructor(context: Context, attrs: Attri
      */
     private fun setUp() {
         setUpAddSetBtn()
+        binding.scrollView
     }
 
     /**

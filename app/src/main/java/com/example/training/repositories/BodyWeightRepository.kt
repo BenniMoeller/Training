@@ -1,6 +1,5 @@
-package com.example.training.database.repositories
+package com.example.training.repositories
 
-import com.example.training.database.DataConverter
 import com.example.training.database.DatabaseDao
 import com.example.training.database.dataClasses.BodyWeight
 import java.lang.IllegalArgumentException

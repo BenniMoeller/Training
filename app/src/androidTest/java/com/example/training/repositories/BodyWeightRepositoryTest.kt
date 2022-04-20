@@ -1,11 +1,8 @@
-package com.example.training.database.repositories
+package com.example.training.repositories
 
 import android.content.Context
-import androidx.lifecycle.LifecycleRegistry
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.example.training.database.DataConverter
-import com.example.training.database.DatabaseDao
 import com.example.training.database.TrainingDatabase
 import com.example.training.database.dataClasses.BodyWeight
 import org.junit.Assert.*

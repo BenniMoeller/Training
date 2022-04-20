@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.training.database.DatabaseDao
 import com.example.training.database.dataClasses.Exercise
 import com.example.training.database.dataClasses.ExerciseType
-import com.example.training.database.repositories.ExerciseRepository
+import com.example.training.repositories.ExerciseRepository
 import kotlinx.coroutines.*
 
 

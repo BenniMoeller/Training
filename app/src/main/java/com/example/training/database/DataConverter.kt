@@ -29,11 +29,11 @@ internal class DataConverter {
 
 
     @TypeConverter
-    fun dateToValue(data: Date) = data.time
+    fun dateToValue(data: Date?) = data?.time
 
 
     @TypeConverter
-    fun valueToDate(data: Long) = Date(data)
+    fun valueToDate(data: Long?) = data?.let { Date(it) }
 
 
     @TypeConverter
@@ -46,10 +46,7 @@ internal class DataConverter {
     fun rangeToValue(data: Range) = data.asFormattedString()
 
     @TypeConverter
-    fun valueToRange(data: String): Range {
-        val numbers = data.split("-")
-        return Range(numbers[0].toInt(), numbers[1].toInt())
-    }
+    fun valueToRange(data: String) = Range.fromFormattedString(data)
 
 
 }

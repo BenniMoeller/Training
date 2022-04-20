@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.training.R
 import com.example.training.database.TrainingDatabase
-import com.example.training.database.repositories.ExerciseRepository
 import com.example.training.databinding.ExerciseFragmentBinding
 import com.example.training.fragments.exerciseFragment.exerciseRecyclerView.ExerciseListener
 import com.example.training.fragments.exerciseFragment.exerciseRecyclerView.ExerciseRecyclerAdapter

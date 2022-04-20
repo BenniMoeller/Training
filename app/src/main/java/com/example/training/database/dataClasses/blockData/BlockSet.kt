@@ -20,9 +20,9 @@ import kotlin.math.max
                                   onDelete = ForeignKey.CASCADE)])
 data class BlockSet(@ColumnInfo(name = "target_reps") val targetReps: Range,
                     @ColumnInfo(name = "target_rir") val targetRir: Range,
-                    @PrimaryKey(autoGenerate = true) val id: Long = 0,
-                    @ColumnInfo(name = "set_index") val setIndex: Int = 0,
-                    @ColumnInfo(name = "blockexercise_id") val blockExerciseId: Long = 0) {
+                    @PrimaryKey(autoGenerate = true) var id: Long = 0,
+                    @ColumnInfo(name = "set_index") var setIndex: Int = 0,
+                    @ColumnInfo(name = "blockexercise_id") var blockExerciseId: Long = 0) {
 
     init {
         if (setIndex < 0) throw IllegalArgumentException("The setIndex mustn't be smaller than zero")
@@ -38,7 +38,30 @@ data class BlockSet(@ColumnInfo(name = "target_reps") val targetReps: Range,
  * @constructor
  */
 data class Range(private val minRange: Int, private val maxRange: Int) {
-    @Ignore val separator = "-" //the separator to display this range as a string
+    @Ignore private val separator = "-" //the separator to display this range as a string
+
+
+    companion object {
+        @Ignore private val rangeStringFormat = Regex("[0-9]+-[0-9]+")
+
+        /**
+         * returns a value from a correctly formatted RangeString
+         * @param string String the input string. must either be in the form "int" or "int-int". if it is in another form Range(0,0) will be returned
+         * @return the Range containing the information from the string
+         */
+        fun fromFormattedString(string: String): Range {
+            lateinit var range: Range
+
+            if(rangeStringFormat.matches(string)) {
+                val numbers = string.split("-")
+                return Range(numbers[0].toInt(), numbers[1].toInt())
+            } else {
+                val number = string.toIntOrNull() ?: 0
+                range = Range(number, number)
+            }
+            return range
+        }
+    }
 
     init {
         if (minRange < 0 && maxRange < 0) throw IllegalArgumentException("reps mustn't be smaller than zero")

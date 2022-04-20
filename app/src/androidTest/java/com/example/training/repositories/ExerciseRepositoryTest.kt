@@ -1,4 +1,4 @@
-package com.example.training.database.repositories
+package com.example.training.repositories
 
 import android.content.Context
 import androidx.room.Room

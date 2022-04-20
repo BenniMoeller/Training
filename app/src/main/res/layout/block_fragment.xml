@@ -13,18 +13,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/test"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/weekDayTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="auto" />
+
+        <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.blockExerciseIndexString}" />
+
+        <Spinner
+            android:id="@+id/exerciseSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@{viewModel.exercises}"
+            android:selectedItemPosition="@={viewModel.displayedExerciseIndex}"
+            android:spinnerMode="dropdown" />
+
 
         <com.example.training.fragments.blockFragment.BlockExerciseView
             android:id="@+id/blockExerciseView"
+            blockSets="@={viewModel.displayedBlockSets}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            blockSets="@={viewModel.currentBlockSets}"/>
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/blockSaveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:text="@string/block_fragment_save_block_string" />
 
     </LinearLayout>
 </layout>

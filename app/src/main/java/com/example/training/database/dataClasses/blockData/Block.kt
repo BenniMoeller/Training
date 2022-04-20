@@ -17,7 +17,7 @@ import java.util.*
 data class Block(@ColumnInfo(name = "blockName") val name: String,
                  @ColumnInfo(name = "is_development_Block") val isDevelopmentBlock: Boolean,
                  @ColumnInfo(name = "block_start") val start: Date = Calendar.getInstance().time,
-                 @PrimaryKey(autoGenerate = true) val id: Long = 0,
+                 @PrimaryKey(autoGenerate = true) var id: Long = 0,
                  @ColumnInfo(name = "block_end") val end: Date? = null) {
 
 }

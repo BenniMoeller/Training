@@ -1,4 +1,4 @@
-package com.example.training.database.repositories
+package com.example.training.repositories
 
 import android.database.sqlite.SQLiteConstraintException
 import com.example.training.database.DatabaseDao
@@ -38,6 +38,12 @@ internal class ExerciseRepository(private val databaseDao: DatabaseDao) {
      * @return LiveData<List<Exercise>> a livedata containing a list containing all the exercises
      */
     fun getAllExercises() = databaseDao.getAllExercises()
+
+    /**
+     * returns all exerciseNames
+     * @return LiveData<List<String>>
+     */
+    fun getAllExerciseNames() = databaseDao.getAllExerciseNames()
 
     /**
      * changes the mainLiftstatus of an exercise and updates the value in the database
