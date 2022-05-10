@@ -21,9 +21,9 @@ import com.example.training.database.dataClasses.blockData.BlockExercise
                                                                              parentColumns = arrayOf("id"),
                                                                              childColumns = arrayOf("training_day_id"),
                                                                              onDelete = ForeignKey.CASCADE)])
-data class TrainingExercise(@PrimaryKey(autoGenerate = true) val id: Long = 0,
+data class TrainingExercise(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                             @ColumnInfo(name = "training_day_id") val trainingDayId: Long = 0,
-                            @ColumnInfo(name = "blocktraining_exercise_id") val blockTrainingDayId: Long = 0) {
+                            @ColumnInfo(name = "blocktraining_exercise_id") val blockTrainingExerciseId: Long = 0) {
 
 
 }

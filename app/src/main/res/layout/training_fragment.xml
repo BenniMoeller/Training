@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.training.fragments.trainingFragment.TrainingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.example.training.fragments.trainingFragment.trainingViews.TrainingExerciseView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            blockSets="@{viewModel.currentBlockSets}"
+            trainingSets="@={viewModel.currentTrainingSets}"
+            areSetsNew="@{viewModel.isNewTrainingExercise()}"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="@string/trainingfragment_save_btn"
+            android:onClick="@{() -> viewModel.saveTrainingExercise()}"/>
+
+    </LinearLayout>
+</layout>

@@ -45,7 +45,7 @@ internal class BlockViewModel(private val database: DatabaseDao, application: Ap
 
     val displayedBlockSets = MutableLiveData<MutableList<BlockSet>>(mutableListOf()) //the BlockSets that are displayed atm in the ui
     val displayedExerciseIndex = MutableLiveData(0) //the index of the exercise that is selected in the spinner in the xml
-    val blockExerciseIndexString = MutableLiveData<String>() //displays the index of the blockExercise as a string
+    val blockExerciseIndexString = MutableLiveData<String>("1/1") //displays the index of the blockExercise as a string
 
 
     override fun onCleared() {
@@ -60,8 +60,8 @@ internal class BlockViewModel(private val database: DatabaseDao, application: Ap
         checkDataForValidity()
         val newSets = savedBlockSets[currentWeekDayIndex][currentBlockExerciseIndex]
         val newExerciseIndex = savedExercises[currentWeekDayIndex][currentBlockExerciseIndex]
-        displayedBlockSets.postValue(newSets)
-        displayedExerciseIndex.postValue(newExerciseIndex)
+        displayedBlockSets.value = newSets
+        displayedExerciseIndex.value = newExerciseIndex
         updateDisplayedBlockExerciseIndex()
     }
 
@@ -121,7 +121,7 @@ internal class BlockViewModel(private val database: DatabaseDao, application: Ap
     private fun updateDisplayedBlockExerciseIndex() {
         val amountBlockExercises = savedBlockSets[currentWeekDayIndex].size
         val newBlockExerciseIndexString = "${currentBlockExerciseIndex + 1}/$amountBlockExercises"
-        blockExerciseIndexString.postValue(newBlockExerciseIndexString)
+        blockExerciseIndexString.value = newBlockExerciseIndexString
     }
 
 
@@ -166,6 +166,7 @@ internal class BlockViewModel(private val database: DatabaseDao, application: Ap
      * saves the block that is currently displayed in the ViewModel/Ui to the database
      */
     fun saveBlock(blockName: String, isDevelopmentBlock: Boolean) {
+        saveBlockExercise()
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 val block = Block(blockName, isDevelopmentBlock, startDate)

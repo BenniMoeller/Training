@@ -8,7 +8,6 @@ import com.example.training.database.dataClasses.Exercise
 import com.example.training.database.dataClasses.ExerciseType
 import com.example.training.database.dataClasses.blockData.*
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import java.util.*

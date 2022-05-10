@@ -28,11 +28,18 @@ import java.lang.IllegalArgumentException
 data class TrainingSet(@ColumnInfo(name = "weight") val weight: Double,
                        @ColumnInfo(name = "reps") val reps: Int,
                        @ColumnInfo(name = "rir") val rir: Int,
-                       @PrimaryKey(autoGenerate = true) val id: Long = 0,
-                       @ColumnInfo(name = "training_exercise") val trainingExerciseId: Long = 0,
-                       @ColumnInfo(name = "block_set") val blockSetId: Long = 0) {
+                       @PrimaryKey(autoGenerate = true) var id: Long = 0,
+                       @ColumnInfo(name = "training_exercise") var trainingExerciseId: Long = 0,
+                       @ColumnInfo(name = "block_set") var blockSetId: Long = 0) {
     init {
-        if ((reps < 1) || (rir < 0) || (weight < 0.0)) throw IllegalArgumentException("reps, rir and weight mustn't be smaller than zero")
+      //todo this check makes sense but it fucks with the databinding and creating an empty trainingSet. change this later  if ((reps < 1) || (rir < 0) || (weight < 0.0)) throw IllegalArgumentException("reps, rir and weight mustn't be smaller than zero")
+    }
+
+    /**
+     * checks whether another trainingSet matches this one in terms of weight, reps and rir
+     */
+    fun equalsTrainingSet(trainingSet: TrainingSet): Boolean {
+        return (weight == trainingSet.weight && reps == trainingSet.reps && rir == trainingSet.rir )
     }
 
 

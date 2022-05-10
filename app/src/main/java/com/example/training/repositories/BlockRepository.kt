@@ -19,16 +19,20 @@ internal class BlockRepository(private val databaseDao: DatabaseDao) {
      * saves a block to the database.
      * @param block Block
      */
-    fun saveBlock(block: Block) {
+    fun saveBlock(block: Block) { //todo make sure that all other blocks are finished when this one is saved
         block.id = databaseDao.saveBlock(block)
     }
+
+    /**
+     * returns the currently active Block
+     * @return Block
+     */
+    fun getCurrentBlock() = databaseDao.getLatestActiveBlock()
 
 
     /**
      * saves a BlockTrainingDay to the Database
-     * @param blockTrainingDay BlockTrainingDay
-     * @param blockId Long the id of the block this BlockTrainingDay belongs to
-     * @param dayOfWeek Int the day that this Block is executed on
+     * @param blockTrainingDay BlockTrainingDay //todo make sure that for all block data classes that there are no gaps in the indices
      */
     fun saveBlockTrainingDay(blockTrainingDay: BlockTrainingDay) {
         if (databaseDao.getBlockTrainingDayByBlockAndWeekDay(blockTrainingDay.blockId, blockTrainingDay.dayOfWeek) != null) {
@@ -44,13 +48,17 @@ internal class BlockRepository(private val databaseDao: DatabaseDao) {
 
     }
 
+    /**
+     * returns the BlockTrainingDay from the database
+     * @param blockId Long the of the Block this BlockTrainingDay takes place in
+     * @param dayOfWeek Int the day of the week that this BlockTrainingDay is planned on
+     */
+    fun getBlockTrainingDay(blockId: Long, dayOfWeek: Int) = databaseDao.getBlockTrainingDayByBlockAndWeekDay(blockId, dayOfWeek)
+    //todo maybe throw exception if the Block doesn't exist
 
     /**
      * saves a blockExercise to the Database
      * @param blockExercise BlockExercise
-     * @param blockTrainingDayId Long the if of the BlockTrainingDay this entity belongs to
-     * @param exerciseCounter Int the index of this BlockExercise in the BlockTrainingDay
-     * @param exerciseName String the name of the Exercise of this BlockExercise
      */
     fun saveBlockExercise(blockExercise: BlockExercise) {
         if (databaseDao.getBlockExerciseFromBlockTrainingDayAndExerciseCounter(blockExercise.blockTrainingDayId,
@@ -69,6 +77,15 @@ internal class BlockRepository(private val databaseDao: DatabaseDao) {
     }
 
     /**
+     * returns the BlockExercise from the database
+     * @param blockTrainingDayId Long the id of the BlockTrainingDay this BlockExercise takes place in
+     * @param exerciseCounter Int the how manyth BlockExercise this is in a BlockTrainingDay
+     * @return BlockExercise?
+     */
+    fun getBlockExercise(blockTrainingDayId: Long, exerciseCounter: Int) = //todo maybe throw exception if the BlockTrainingDay doesn't exist
+        databaseDao.getBlockExerciseFromBlockTrainingDayAndExerciseCounter(blockTrainingDayId, exerciseCounter)
+
+    /**
      * saves a BlockSet to the dataBase
      * @param blockSet BlockSet the BlockSet to be saved
      */
@@ -83,5 +100,13 @@ internal class BlockRepository(private val databaseDao: DatabaseDao) {
             throw IllegalArgumentException("There exists no BlockExercise with the id ${blockSet.blockExerciseId}")
         }
     }
+
+    /**
+     * returns all the BlockSets from a BlockExercise
+     * @param blockExerciseId Long the id of the BLockExercise in the Database
+     * @return List<BlockSet> the BlockSets in a list
+     */
+    fun getTrainingSetsFromBlockExercise(blockExerciseId: Long) = databaseDao.getBlockSetsFromBlockExercise(blockExerciseId)
+    //todo maybe throw exception if the BlockExercise doesn't exist
 
 }

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_startFragment_to_blockFragment"
             app:destination="@id/blockFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_trainingFragment"
+            app:destination="@id/trainingFragment" />
     </fragment>
     <fragment
         android:id="@+id/bodyWeightFragment"
@@ -40,6 +43,14 @@
         android:label="BlockFragment" >
         <action
             android:id="@+id/action_blockFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingFragment"
+        android:name="com.example.training.fragments.trainingFragment.TrainingFragment"
+        android:label="TrainingFragment" >
+        <action
+            android:id="@+id/action_trainingFragment_to_startFragment"
             app:destination="@id/startFragment" />
     </fragment>
 </navigation>

@@ -47,6 +47,8 @@ class StartFragment : Fragment() {
         binding.lifecycleOwner = this
     }
 
+    //todo add espresso tests for all fragments
+
     /**
      * sets up the navigation so all buttons navigate onClick
      */
@@ -54,6 +56,7 @@ class StartFragment : Fragment() {
         binding.bodyWeightNavBtn.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_bodyWeightFragment) }
         binding.exerciseNavBtn.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_exerciseFragment) }
         binding.blockNavBtn.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_blockFragment) }
+        binding.trainingNavBtn.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_trainingFragment) }
     }
 }
 

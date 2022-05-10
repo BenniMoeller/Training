@@ -32,5 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_fragment_nav_block_string" />
+
+        <Button
+            android:id="@+id/training_nav_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/startfragment_training_navigation"/>
     </LinearLayout>
 </layout>

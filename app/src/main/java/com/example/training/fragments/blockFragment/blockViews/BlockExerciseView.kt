@@ -1,4 +1,4 @@
-package com.example.training.fragments.blockFragment
+package com.example.training.fragments.blockFragment.blockViews
 
 
 import android.content.Context
@@ -13,7 +13,6 @@ import androidx.databinding.InverseBindingListener
 import com.example.training.R
 import com.example.training.database.dataClasses.blockData.BlockSet
 import com.example.training.databinding.BlockexerciseViewBinding
-import com.example.training.fragments.blockFragment.blockViews.BlockSetView
 
 /**
  * view that represents a blockExercise
@@ -35,7 +34,6 @@ class BlockExerciseView @JvmOverloads constructor(context: Context, attrs: Attri
      */
     private fun setUp() {
         setUpAddSetBtn()
-        binding.scrollView
     }
 
     /**
@@ -116,7 +114,7 @@ class BlockExerciseViewBindingAdapters() {
 
         @BindingAdapter("blockSets")
         @JvmStatic
-        fun setTime(view: BlockExerciseView, newValue: List<BlockSet>) {
+        fun setBlockSets(view: BlockExerciseView, newValue: List<BlockSet>) {
             if (!view.equalsBlockSets(newValue)) { // Important to break potential infinite loops.
                 view.addBlockSets(newValue)
             }
@@ -124,7 +122,7 @@ class BlockExerciseViewBindingAdapters() {
 
         @InverseBindingAdapter(attribute = "blockSets")
         @JvmStatic
-        fun getTime(view: BlockExerciseView): List<BlockSet> = view.getBlockSets()
+        fun getBlockSets(view: BlockExerciseView): List<BlockSet> = view.getBlockSets()
 
         @BindingAdapter("app:blockSetsAttrChanged")
         @JvmStatic

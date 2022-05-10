@@ -21,11 +21,11 @@ import java.util.*
                                   childColumns = arrayOf("blocktrainingday_id"),
                                   onDelete = ForeignKey.CASCADE)])
 data class TrainingDay(@ColumnInfo(name = "week_index") val weekIndex: Int,
-                       @PrimaryKey(autoGenerate = true) val id: Long = 0,
+                       @PrimaryKey(autoGenerate = true) var id: Long = 0,
                        @ColumnInfo(name = "blocktrainingday_id") val blockTrainingDayId: Long = 0) {
 
     init {
-        if (weekIndex < 1) throw IllegalArgumentException("There can't be nothing before the first Week in a Block")
+        if (weekIndex < 0) throw IllegalArgumentException("There can't be nothing before the first Week in a Block")
     }
 
 
